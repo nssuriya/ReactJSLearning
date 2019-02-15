@@ -46,34 +46,38 @@ class Sidebar extends React.Component {
 
   render() {
     const { classes } = this.props;
-    return (
-      <Drawer
-        className={classes.drawer}
-        variant="permanent"
-        classes={{
-          paper: classes.drawerPaper
-        }}
-        anchor="left"
-      >
-        <div className={classes.toolbar} />
-        <Divider />
-        <List>
-          {this.props.list.map((text, index) => (
-            <ListItem
-              onClick={event => this.handleClick(event, index)}
-              button
-              key={text}
-              index={index}
-            >
-              <ListItemIcon>
-                <InboxIcon />
-              </ListItemIcon>
-              <ListItemText primary={text} />
-            </ListItem>
-          ))}
-        </List>
-      </Drawer>
-    );
+    if (this.props.login) {
+      return (
+        <Drawer
+          className={classes.drawer}
+          variant="permanent"
+          classes={{
+            paper: classes.drawerPaper
+          }}
+          anchor="left"
+        >
+          <div className={classes.toolbar} />
+          <Divider />
+          <List>
+            {this.props.list.map((text, index) => (
+              <ListItem
+                onClick={event => this.handleClick(event, index)}
+                button
+                key={text}
+                index={index}
+              >
+                <ListItemIcon>
+                  <InboxIcon />
+                </ListItemIcon>
+                <ListItemText primary={text} />
+              </ListItem>
+            ))}
+          </List>
+        </Drawer>
+      );
+    } else {
+      return null;
+    }
   }
 }
 

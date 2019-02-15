@@ -55,8 +55,10 @@ class Login extends React.Component {
     this.state = {};
   }
   handleSubmit = event => {
-    // event.preventDefault();
+    event.preventDefault();
+    this.props.onClose();
     history.push("/home");
+    this.props.login();
     // this.handleClose();
   };
   render() {

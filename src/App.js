@@ -12,6 +12,7 @@ class App extends Component {
   constructor() {
     super();
     this.state = {
+      isLoggedIn: false,
       header: "Welcome",
       headerList: ["Home", "About Us", "Contact"],
       urlList: {
@@ -26,25 +27,28 @@ class App extends Component {
       header: event.target.textContent
     });
   };
-
+  changeLoggedInStatus = event => {
+    this.setState({
+      isLoggedIn: true
+    });
+  };
   render() {
     return (
       <div>
-        <Header headerList={this.state.header} />
+        <Header
+          headerList={this.state.header}
+          login={this.changeLoggedInStatus}
+        />
+        <Sidebar
+          list={this.state.headerList}
+          changeHeaderText={this.changeHeaderText}
+          urlList={this.state.urlList}
+          login={this.state.isLoggedIn}
+        />
+
         <Router history={history}>
           <div>
             <Route exact path="/" component={Welcome} />
-            <Route
-              path="/"
-              render={props => (
-                <Sidebar
-                  list={this.state.headerList}
-                  changeHeaderText={this.changeHeaderText}
-                  urlList={this.state.urlList}
-                  {...props}
-                />
-              )}
-            />
             <Route exact path="/home" component={Home} />
             <Route exact path="/aboutUs" component={AboutUs} />
             <Route exact path="/contact" component={Contact} />

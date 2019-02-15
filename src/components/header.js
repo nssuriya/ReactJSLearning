@@ -52,7 +52,11 @@ class Header extends React.Component {
             <Button color="inherit" onClick={this.handleClickOpen}>
               Login
             </Button>
-            <Login open={this.state.open} onClose={this.handleClose} />
+            <Login
+              open={this.state.open}
+              onClose={this.handleClose}
+              login={this.props.login}
+            />
           </Toolbar>
         </AppBar>
       </div>
